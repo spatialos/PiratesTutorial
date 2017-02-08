@@ -1,11 +1,11 @@
 {
   "build": {
-    "tasks_filename": "spatialos.fsim.build.json",
+    "tasks_filename": "spatialos.unity.worker.build.json",
     "generated_build_scripts_type": "unity"
   },
   "bridge": {
-    "worker_claim": {
-      "claims": [
+    "worker_attribute_set": {
+      "attributes": [
         "physics"
       ]
     },
@@ -29,8 +29,8 @@
   },
   "managed": {
     "linux": {
-      "artifact_name": "UnityFSim@Linux.zip",
-      "command": "UnityFSim@Linux",
+      "artifact_name": "UnityWorker@Linux.zip",
+      "command": "UnityWorker@Linux",
       "arguments": [
         "+appName",
         "${IMPROBABLE_PROJECT_NAME}",
@@ -57,8 +57,8 @@
       ]
     },
     "windows": {
-      "artifact_name": "UnityFSim@Windows.zip",
-      "command": "UnityFSim@Windows.exe",
+      "artifact_name": "UnityWorker@Windows.zip",
+      "command": "UnityWorker@Windows.exe",
       "arguments": [
         "+appName",
         "${IMPROBABLE_PROJECT_NAME}",
@@ -85,8 +85,8 @@
       ]
     },
     "macos": {
-      "artifact_name": "UnityFSim@Mac.zip",
-      "command": "UnityFSim@Mac.app/Contents/MacOS/UnityFSim@Mac",
+      "artifact_name": "UnityWorker@Mac.zip",
+      "command": "UnityWorker@Mac.app/Contents/MacOS/UnityWorker@Mac",
       "arguments": [
         "+appName",
         "${IMPROBABLE_PROJECT_NAME}",
@@ -117,12 +117,12 @@
     "default": {
       "run_type": "EXECUTABLE",
       "windows": {
-        "command": "build/worker/UnityFSim@Windows/UnityFSim@Windows.exe",
+        "command": "build/worker/UnityWorker@Windows/UnityWorker@Windows.exe",
         "arguments": [
           "+assemblyName",
           "local_assembly",
           "+engineType",
-          "UnityFSim",
+          "UnityWorker",
           "+infraServicesUrl",
           "http://127.0.0.1:21000",
           "+appName",
@@ -136,12 +136,12 @@
       "macos": {
         "command": "open",
         "arguments": [
-          "./build/worker/UnityFSim@Mac/UnityFSim@Mac.app",
+          "./build/worker/UnityWorker@Mac/UnityWorker@Mac.app",
           "--args",
           "+assemblyName",
           "local_assembly",
           "+engineType",
-          "UnityFSim",
+          "UnityWorker",
           "+infraServicesUrl",
           "http://127.0.0.1:21000",
           "+appName",

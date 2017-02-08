@@ -3,7 +3,7 @@
 namespace Assets.Gamelogic.Player
 {
     // Enable this MonoBehaviour on FSim (server-side) workers only
-    [EngineType(EnginePlatform.FSim)]
+    [WorkerType(WorkerPlatform.UnityWorker)]
     public class PlayerEntityLifecycleManager : MonoBehaviour
     {
         // Enable this MonoBehaviour only on the worker which has write-access for the entity's PlayerLifecycle component

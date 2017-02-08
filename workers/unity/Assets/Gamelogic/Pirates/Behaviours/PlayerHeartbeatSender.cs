@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Assets.Gamelogic.Player
 {
     // Enable this MonoBehaviour on client workers only
-    [EngineType(EnginePlatform.Client)]
+    [WorkerType(WorkerPlatform.UnityClient)]
     public class PlayerHeartbeatSender : MonoBehaviour
     {
         /* 

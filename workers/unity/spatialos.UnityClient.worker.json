@@ -1,11 +1,11 @@
 {
   "build": {
-    "tasks_filename": "spatialos.client.build.json",
+    "tasks_filename": "spatialos.unity.client.build.json",
     "generated_build_scripts_type": "unity"
   },
   "bridge": {
-    "worker_claim": {
-      "claims": [
+    "worker_attribute_set": {
+      "attributes": [
         "visual"
       ]
     },

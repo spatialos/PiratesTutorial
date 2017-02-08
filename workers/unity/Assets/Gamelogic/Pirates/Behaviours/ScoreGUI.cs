@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 namespace Assets.Gamelogic.Pirates.Behaviours
 {
-	// Enable this MonoBehaviour on client workers only
-	[EngineType(EnginePlatform.Client)]
-	public class ScoreGUI : MonoBehaviour
+    // Enable this MonoBehaviour on client workers only
+    [WorkerType(WorkerPlatform.UnityClient)]
+    public class ScoreGUI : MonoBehaviour
 	{
 		/*
          * Client will only have write access for their own designated PlayerShip entity's ShipControls component,

@@ -5,9 +5,9 @@ using Improbable.Unity.Visualizer;
 
 namespace Assets.Gamelogic.Pirates.Behaviours
 {
-	// Enable this MonoBehaviour on FSim (server-side) workers only
-	[EngineType(EnginePlatform.FSim)]
-	public class SteerRandomly : MonoBehaviour
+    // Enable this MonoBehaviour on FSim (server-side) workers only
+    [WorkerType(WorkerPlatform.UnityWorker)]
+    public class SteerRandomly : MonoBehaviour
 	{
 		/*
          * An entity with this MonoBehaviour will only be enabled for the single FSim worker

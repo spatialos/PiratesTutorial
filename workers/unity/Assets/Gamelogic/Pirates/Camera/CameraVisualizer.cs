@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Gamelogic.Pirates.Camera
 {
     // Enable this MonoBehaviour on client workers only
-    [EngineType(EnginePlatform.Client)]
+    [WorkerType(WorkerPlatform.UnityClient)]
     public class CameraVisualizer : MonoBehaviour
     {
         public Transform CameraRoot;

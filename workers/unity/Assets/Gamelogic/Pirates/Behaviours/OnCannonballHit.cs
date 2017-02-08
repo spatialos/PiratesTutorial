@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace Assets.Gamelogic.Pirates.Cannons
 {
-	// Enable this MonoBehaviour on FSim (server-side) workers only
-	[EngineType(EnginePlatform.FSim)]
-	public class OnCannonballHit : MonoBehaviour
+    // Enable this MonoBehaviour on FSim (server-side) workers only
+    [WorkerType(WorkerPlatform.UnityWorker)]
+    public class OnCannonballHit : MonoBehaviour
 	{
 		// Enable this MonoBehaviour only on the worker with write access for the entity's Health component
 		[Require] private Health.Writer HealthWriter;

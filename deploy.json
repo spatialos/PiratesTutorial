@@ -22,7 +22,7 @@
   },
   "workers": [
     {
-      "worker_type": "UnityFSim",
+      "worker_type": "UnityWorker",
       "load_balancing": {
         "dynamic_loadbalancer": {
           "worker_scaler_config": {

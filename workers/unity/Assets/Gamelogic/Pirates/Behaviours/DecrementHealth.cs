@@ -7,7 +7,7 @@ using Improbable.Ship;
 namespace Assets.Gamelogic.Pirates.Behaviours
 {
     // Enable this MonoBehaviour on FSim (server-side) workers only
-    [EngineType(EnginePlatform.FSim)]
+    [WorkerType(WorkerPlatform.UnityWorker)]
     public class DecrementHealth : MonoBehaviour
     {
 		[Require]

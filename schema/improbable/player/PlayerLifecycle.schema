@@ -24,8 +24,8 @@ component PlayerLifecycle {
     uint32 player_heartbeat_interval = 3;
 
     // Allow clients to request deletion of their entity when they exit
-	command DeletePlayerRequest delete_player returns DeletePlayerResponse;
+	command DeletePlayerResponse delete_player(DeletePlayerRequest);
 
     // Used by clients to indicate they are still connected
-    command HeartbeatRequest heartbeat returns HeartbeatResponse;
+    command HeartbeatResponse heartbeat(HeartbeatRequest);
 }

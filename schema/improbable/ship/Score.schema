@@ -16,5 +16,5 @@ component Score {
     int32 number_of_points = 1;
 
     // Used by other entities to give points to entity with the Score component
-    command AwardPoints award_points returns AwardResponse;
+    command AwardResponse award_points(AwardPoints);
 }
