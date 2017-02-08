@@ -18,9 +18,9 @@ public class Bootstrap : MonoBehaviour
     {
         SpatialOS.ApplyConfiguration(Configuration);
 
-        switch (SpatialOS.Configuration.EnginePlatform)
+        switch (SpatialOS.Configuration.WorkerPlatform)
         {
-            case EnginePlatform.FSim:
+            case WorkerPlatform.UnityWorker:
                 SpatialOS.OnDisconnected += reason => Application.Quit();
 
                 var targetFramerate = 120;
@@ -29,7 +29,7 @@ public class Bootstrap : MonoBehaviour
                 Application.targetFrameRate = targetFramerate;
                 Time.fixedDeltaTime = 1.0f / fixedFramerate;
                 break;
-            case EnginePlatform.Client:
+            case WorkerPlatform.UnityClient:
                 SpatialOS.OnConnected += OnConnected;
                 break;
         }

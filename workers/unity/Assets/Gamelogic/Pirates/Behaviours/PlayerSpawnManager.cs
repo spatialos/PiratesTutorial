@@ -10,7 +10,7 @@ using Assets.EntityTemplates;
 namespace Assets.Gamelogic.Pirates.Behaviours
 {
     // Enable this MonoBehaviour on FSim (server-side) workers only
-    [EngineType(EnginePlatform.FSim)]
+    [WorkerType(WorkerPlatform.UnityWorker)]
     public class PlayerSpawnManager : MonoBehaviour
     {
         // Enable this MonoBehaviour only on the worker which has write-access for the entity's Spawner component

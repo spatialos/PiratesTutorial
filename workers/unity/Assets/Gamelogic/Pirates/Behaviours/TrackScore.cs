@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Assets.Gamelogic.Pirates.Behaviours
 {
-	// Enable this MonoBehaviour on FSim (server-side) workers only
-	[EngineType(EnginePlatform.FSim)]
-	public class TrackScore : MonoBehaviour
+    // Enable this MonoBehaviour on FSim (server-side) workers only
+    [WorkerType(WorkerPlatform.UnityWorker)]
+    public class TrackScore : MonoBehaviour
 	{
 		/*
          * An entity with this MonoBehaviour will only be enabled for the single FSim worker

@@ -5,7 +5,7 @@ using Improbable.Unity.Visualizer;
 namespace Assets.Gamelogic.Pirates.Shaders
 {
     // Enable this MonoBehaviour on client workers only
-    [EngineType(EnginePlatform.Client)]
+    [WorkerType(WorkerPlatform.UnityClient)]
     public class ReapplyShaders : MonoBehaviour
     {
         // This script fixes a Unity bug that prevents shaders from correctly being visualised on Macs.

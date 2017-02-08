@@ -17,5 +17,5 @@ component Spawner {
     id = 1002;
 
     // Used by clients on connection to request a ship is spawned for the player
-    command SpawnPlayerRequest spawn_player returns SpawnPlayerResponse;
+    command SpawnPlayerResponse spawn_player(SpawnPlayerRequest);
 }

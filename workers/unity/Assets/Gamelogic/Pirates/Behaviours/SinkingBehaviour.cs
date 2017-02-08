@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Assets.Gamelogic.Pirates.Behaviours
 {
-	// Enable this MonoBehaviour on client workers only
-	[EngineType(EnginePlatform.Client)]
-	public class SinkingBehaviour : MonoBehaviour
+    // Enable this MonoBehaviour on client workers only
+    [WorkerType(WorkerPlatform.UnityClient)]
+    public class SinkingBehaviour : MonoBehaviour
 	{
 		// Inject access to the entity's Health component
 		[Require] private Health.Reader HealthReader;
