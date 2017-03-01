@@ -27,8 +27,8 @@ namespace Assets.Gamelogic.Player
             PlayerLifecycleWriter.Send(new PlayerLifecycle.Update().SetCurrentMissedHeartbeats(0));
 
             // Register command callbacks
-            PlayerLifecycleWriter.CommandReceiver.OnDeletePlayer += OnDeletePlayer;
-            PlayerLifecycleWriter.CommandReceiver.OnHeartbeat += OnHeartbeat;
+            PlayerLifecycleWriter.CommandReceiver.OnDeletePlayer.RegisterResponse(OnDeletePlayer);
+            PlayerLifecycleWriter.CommandReceiver.OnHeartbeat.RegisterResponse(OnHeartbeat);
 
             // Periodic counter increase
             InvokeRepeating("IncrementMissedHeartbeats", 0f, PlayerLifecycleWriter.Data.playerHeartbeatInterval);
@@ -37,17 +37,16 @@ namespace Assets.Gamelogic.Player
         void OnDisable()
         {
             // Deregister command callbacks
-            PlayerLifecycleWriter.CommandReceiver.OnDeletePlayer -= OnDeletePlayer;
-            PlayerLifecycleWriter.CommandReceiver.OnHeartbeat -= OnHeartbeat;
+            PlayerLifecycleWriter.CommandReceiver.OnDeletePlayer.DeregisterResponse();
+            PlayerLifecycleWriter.CommandReceiver.OnHeartbeat.DeregisterResponse();
 
             CancelInvoke("IncrementMissedHeartbeats");
         }
 
-        // Command callback for requests for this entity to be deleted from the simulation
-        private void OnDeletePlayer(ResponseHandle<PlayerLifecycle.Commands.DeletePlayer, DeletePlayerRequest, DeletePlayerResponse> responseHandle)
+        private DeletePlayerResponse OnDeletePlayer(DeletePlayerRequest Request, ICommandCallerInfo CallerInfo)
         {
             DeletePlayer();
-            responseHandle.Respond(new DeletePlayerResponse());
+            return new DeletePlayerResponse();
         }
 
         private void DeletePlayer()
@@ -65,16 +64,16 @@ namespace Assets.Gamelogic.Player
         }
 
         // Command callback for handling heartbeats from clients indicating client is connect and missed heartbeat counter should be reset
-        private void OnHeartbeat(ResponseHandle<PlayerLifecycle.Commands.Heartbeat, HeartbeatRequest, HeartbeatResponse> responseHandle)
+        private HeartbeatResponse OnHeartbeat(HeartbeatRequest Request, ICommandCallerInfo CallerInfo)
         {
             // Heartbeats are issued by clients authoritative over the player entity and should only be sending heartbeats for themselves
-            if (responseHandle.Request.senderEntityId == thisEntityId)
+            if (Request.senderEntityId == thisEntityId)
             {
                 // Reset missed heartbeat counter to avoid entity being deleted
                 PlayerLifecycleWriter.Send(new PlayerLifecycle.Update().SetCurrentMissedHeartbeats(0));
             }
             // Acknowledge command receipt
-            responseHandle.Respond(new HeartbeatResponse());
+            return new HeartbeatResponse();
         }
 
         private void IncrementMissedHeartbeats()

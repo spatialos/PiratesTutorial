@@ -31,13 +31,13 @@ namespace Assets.Gamelogic.Player
             InvokeRepeating("SendHeartbeat", 0f, PlayerLifecycleReader.Data.playerHeartbeatInterval);
 
             // Register callback for when components change
-            PlayerLifecycleReader.ComponentUpdated += OnComponentUpdated;
+            PlayerLifecycleReader.ComponentUpdated.Add(OnComponentUpdated);
         }
 
         private void OnDisable()
         {
             // Deregister callback for when components change
-            PlayerLifecycleReader.ComponentUpdated -= OnComponentUpdated;
+            PlayerLifecycleReader.ComponentUpdated.Remove(OnComponentUpdated);
         }
 
         // Callback for whenever one or more property of the PlayerLifecycle component is updated

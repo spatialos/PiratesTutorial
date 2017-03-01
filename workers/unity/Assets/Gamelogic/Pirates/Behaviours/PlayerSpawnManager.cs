@@ -19,22 +19,22 @@ namespace Assets.Gamelogic.Pirates.Behaviours
         void OnEnable()
         {
             // Register command callback
-            SpawnerWriter.CommandReceiver.OnSpawnPlayer += OnSpawnPlayer;
+            SpawnerWriter.CommandReceiver.OnSpawnPlayer.RegisterAsyncResponse(OnSpawnPlayer);
         }
 
         void OnDisable()
         {
             // Deregister command callback
-            SpawnerWriter.CommandReceiver.OnSpawnPlayer -= OnSpawnPlayer;
+            SpawnerWriter.CommandReceiver.OnSpawnPlayer.DeregisterResponse();
         }
 
         // Command callback for requests by new clients for a new player ship to be spawned
         private void OnSpawnPlayer(
-            ResponseHandle<Spawner.Commands.SpawnPlayer, SpawnPlayerRequest, SpawnPlayerResponse> responseHandle)
+            ResponseHandle<Spawner.Commands.SpawnPlayer, SpawnPlayerRequest, SpawnPlayerResponse> Handle)
         {
-            var request = responseHandle.Request;
-            var playerEntityTemplate = PlayerShipEntityTemplate.GeneratePlayerShipEntityTemplate(responseHandle.CallerInfo.CallerWorkerId,
-                 request.initialPosition);
+            
+            var playerEntityTemplate = PlayerShipEntityTemplate.GeneratePlayerShipEntityTemplate(Handle.CallerInfo.CallerWorkerId,
+                 Handle.Request.initialPosition);
             SpatialOS.Commands.CreateEntity(SpawnerWriter, "PlayerShip", playerEntityTemplate, result =>
             {
                 if (result.StatusCode != StatusCode.Success)
@@ -46,7 +46,7 @@ namespace Assets.Gamelogic.Pirates.Behaviours
                 Debug.Log("PlayerSpawnManager created player entity with entity ID: " + createdEntityId);
 
                 // Acknowledge command receipt and provide client with ID for newly created entity
-                responseHandle.Respond(new SpawnPlayerResponse(createdEntityId));
+                Handle.Respond(new SpawnPlayerResponse(createdEntityId));
             });
         }
     }

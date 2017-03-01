@@ -18,13 +18,13 @@ namespace Assets.Gamelogic.Pirates.Behaviours
             transform.rotation = Quaternion.Euler(0.0f, WorldTransformReader.Data.rotation, 0.0f);
 
             // Register callback for when component changes
-            WorldTransformReader.ComponentUpdated += OnComponentUpdated;
+            WorldTransformReader.ComponentUpdated.Add(OnComponentUpdated);
         }
 
         void OnDisable()
         {
             // Deregister callback for when component changes
-            WorldTransformReader.ComponentUpdated -= OnComponentUpdated;
+            WorldTransformReader.ComponentUpdated.Add(OnComponentUpdated);
         }
 
         // Callback for whenever one or more property of the WorldTransform component is updated
