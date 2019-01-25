@@ -26,7 +26,7 @@ namespace Assets.Editor
             SaveSnapshot(snapshotEntities);
         }
 
-        // Create and island entity for each island prefab at its given world coordinates
+        // Create an island entity for each island prefab at its given world coordinates
         public static void PopulateSnapshotWithIslandTerrainEntities(ref Dictionary<EntityId, Entity> snapshotEntities, ref int nextAvailableId)
         {
             foreach(var item in SimulationSettings.IslandsEntityPlacements)
